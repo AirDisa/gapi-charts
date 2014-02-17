@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      // Load the Visualization API and the chart package.
+      google.load('visualization', '1.0', {'packages':['corechart']});
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawChart);
+      // Callback that creates and populates a data table,
+      // instantiates the chart, passes in the data and draws it.
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Month'); // Implicit domain label col.
+          data.addColumn('number', '2011'); // Implicit series 1 data col.
+          data.addColumn('number', '2012'); // Implicit series 2 data col.
+          data.addColumn('number', '2013'); // Implicit series 3 data col.
+          data.addColumn('number', '2014'); // Implicit series 4 data col.
+          data.addColumn({type:'string',  role:'annotation'}); // annotation role col.
+          data.addColumn({type:'string',  role:'annotationText'}); // annotationText col.
+          data.addColumn({type:'boolean', role:'emphasis'}); // emphasis col.
+          data.addRows([
+              ['Jan', 1400, 1400, 1400, 1000, null, null, true],
+              ['Feb', 1100, 1300, 1100, 1200, 'Feb', 'Feb Note up to a certain amount of text', true],
+              ['Mar', 1700,  900, 1700, 1300, null, null, true],
+              ['Apr', 1200, 1200, 1200, 1100, 'Apr', 'Apr Notes need Rails condition for apostophes etc.', true],
+              ['May', 1500, 1400, 1500, 1100, 'May', 'May Then they won\'t explode in the chart API', true],
+              ['Jun', 1600,  800, 1600,  600, null, null, true],
+              ['Jul', 1400, 1500, 1400, 1800, 'Jul', 'Jul Note is short', true],
+              ['Aug', 1100, 1800, 1100, 1700, 'Aug', 'Aug Note is long as but cannot be too long, limited to a single row?', true],
+              ['Sep', 1000, 1400, 1000, 1100, null, null, true],
+              ['Oct', 1300, 1700, 1300, 1900, null, null, true],
+              ['Nov', 2000, 2300, 2000, 1700, null, null, true],
+              ['Dec', 2200, 1500, 2200, 2600, 'Dec', 'Dec Note is always just optional', true] ]);
+        var options = { 'title': 'Dynamically Driven Title',
+                      curveType: 'function',
+                      pointSize: 3,
+                    focusTarget: 'category',
+                          // hAxis: { format: '#,###' },
+                         legend: { position: 'bottom' },
+                        'width': 510,
+                       'height': 280 };
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options); }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div"></div>
+  </body>
+</html>
